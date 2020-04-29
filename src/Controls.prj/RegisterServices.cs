@@ -20,11 +20,8 @@ namespace Controls
 		{
 			var containerBuilder = new ContainerBuilder();
 
-			//Регистрируем класс ProjectSettings и форму в контейнере.
-			containerBuilder
-				.RegisterType<ProjectSettings>()
-				.AsSelf()
-				.SingleInstance();
+			//Регистрируем класс Модуль формы и саму форму в контейнере.
+			containerBuilder.RegisterModule<MainFormModule>();
 
 			containerBuilder
 				.RegisterType<MainForm>()

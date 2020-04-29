@@ -71,6 +71,7 @@
     <Compile Include="LogControl.Designer.cs">
       <DependentUpon>LogControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainFormModule.cs" />
     <Compile Include="PlayerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
