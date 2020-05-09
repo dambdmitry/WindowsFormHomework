@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Controls
+namespace MainWinForm.Services
 {
-	/// <summary>
-	/// Статичный класс для регистрации типов.
-	/// </summary>
+	/// <summary> Статичный класс для регистрации типов.</summary>
 	public static class RegisterServices
 	{
+		#region Methods
+
 		/// <summary>
 		/// Статичный метод, который регистрирует наши типы
 		/// И возвращает уже построенный контейнер.
@@ -30,5 +30,7 @@ namespace Controls
 
 			return containerBuilder.Build();
 		}
+
+		#endregion
 	}
 }

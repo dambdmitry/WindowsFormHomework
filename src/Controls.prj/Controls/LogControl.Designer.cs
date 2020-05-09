@@ -1,4 +1,4 @@
-﻿namespace Controls
+﻿namespace MainWinForm.Controls
 {
 	partial class LogControl
 	{
@@ -28,32 +28,32 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this._txtBoxText = new System.Windows.Forms.RichTextBox();
+			this._txtLog = new System.Windows.Forms.RichTextBox();
 			this.SuspendLayout();
 			// 
-			// _txtBoxText
+			// _txtLog
 			// 
-			this._txtBoxText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-			this._txtBoxText.Location = new System.Drawing.Point(3, 0);
-			this._txtBoxText.Name = "_txtBoxText";
-			this._txtBoxText.Size = new System.Drawing.Size(252, 188);
-			this._txtBoxText.TabIndex = 0;
-			this._txtBoxText.Text = "";
+			this._txtLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this._txtLog.Location = new System.Drawing.Point(3, 3);
+			this._txtLog.Name = "_txtLog";
+			this._txtLog.Size = new System.Drawing.Size(483, 85);
+			this._txtLog.TabIndex = 0;
+			this._txtLog.Text = "";
 			// 
 			// LogControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this._txtBoxText);
+			this.Controls.Add(this._txtLog);
 			this.Name = "LogControl";
-			this.Size = new System.Drawing.Size(258, 188);
+			this.Size = new System.Drawing.Size(489, 88);
 			this.ResumeLayout(false);
 
 		}
 
 		#endregion
 
-		private System.Windows.Forms.RichTextBox _txtBoxText;
+		private System.Windows.Forms.RichTextBox _txtLog;
 	}
 }

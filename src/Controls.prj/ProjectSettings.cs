@@ -3,21 +3,70 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
-namespace Controls
+namespace MainWinForm
 {
+	/// <summary>Класс, хранящий настройки проекта.</summary>
 	public class ProjectSettings
 	{
-		public string Path;
-		public int Count;
+		#region Data
 
-		/// <summary>
-		/// Конструктор класса.
-		/// </summary>
+		private string _pathXML = "project.xml";
+
+		#endregion
+
+		#region Properties
+
+		/// <summary>Указывает: используется ли детектор.</summary>
+		public bool IsDetector { get; set; }
+
+		/// <summary>Указывает: открывать ли папки с подкаталогами. </summary>
+		public bool IsUnderCatalog { get; set; }
+
+		#endregion
+
+		#region .ctor
+
+		/// <summary>Подгружает настройки проекта.</summary>
 		public ProjectSettings()
 		{
-			this.Path = "Какой-то путь";
-			this.Count = 0;
+			LoadXML();
 		}
+
+		#endregion
+
+		#region Methods
+
+		/// <summary>Сохраняет настройки проекта.</summary>
+		public void SaveXML()
+		{
+			XElement bufElement; //Элемент для записи.
+
+			XDocument xDoc = new XDocument();
+
+			XElement project = new XElement("MainWinForm");
+
+			bufElement = new XElement("IsDetector", IsDetector);
+			project.Add(bufElement);
+
+			bufElement = new XElement("IsUnderCatalog", IsUnderCatalog);
+			project.Add(bufElement);
+
+			xDoc.Add(project);
+
+			xDoc.Save(_pathXML);
+		}
+
+		/// <summary>Загружает настройки проекта.</summary>
+		public void LoadXML()
+		{
+			XDocument xDoc = XDocument.Load(_pathXML);
+
+			IsDetector = bool.Parse(xDoc.Root.Element("IsDetector").Value);
+			IsUnderCatalog = bool.Parse(xDoc.Root.Element("IsUnderCatalog").Value);
+		}
+
+		#endregion
 	}
 }

@@ -4,11 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MainWinForm.Services;
 
-namespace Controls
+namespace MainWinForm
 {
 	static class Program
 	{
+		#region Methods
+
 		/// <summary>
 		/// The main entry point for the application.
 		/// </summary>
@@ -22,5 +25,7 @@ namespace Controls
 				Application.Run(container.Resolve<MainForm>());
 			}	
 		}
+
+		#endregion
 	}
 }
