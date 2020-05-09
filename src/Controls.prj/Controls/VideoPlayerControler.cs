@@ -97,7 +97,7 @@ namespace MainWinForm.Controls
 			}
 			else
 			{
-				MessageBox.Show("В директории нет файлов с нужным расширением \n(.png; .jpg; .bmp; .jpeg)", "Внимание",
+				MessageBox.Show("В директории нет файлов с нужным расширением \n(.png, .jpg, .bmp, .jpeg)", "Внимание",
 					MessageBoxButtons.OK, MessageBoxIcon.Warning);
 			}
 		}
