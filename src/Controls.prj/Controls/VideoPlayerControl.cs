@@ -51,7 +51,15 @@ namespace MainWinForm.Controls
 		/// <summary>Вызывается при изменении картинки.</summary>
 		private void OnChangeImage(object sender, string path)
 		{
-			_picVideo.Image = Image.FromFile(path);
+			try
+			{
+				_picVideo.Image = Image.FromFile(path);
+			}
+			catch(System.OutOfMemoryException)
+			{
+				_picVideo.Image = null;
+				MessageBox.Show($"GDI+ не поддерживает формат файла {path} в пикселях.");
+			}
 		}
 
 		/// <summary>Вызывается при нажатии на кнопку "Открыть файл".</summary>
