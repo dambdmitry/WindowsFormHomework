@@ -28,8 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.panel1 = new System.Windows.Forms.Panel();
-			this._picVideo = new System.Windows.Forms.PictureBox();
 			this._pnlButtonControl = new System.Windows.Forms.Panel();
 			this._btnPause = new System.Windows.Forms.Button();
 			this._btnStop = new System.Windows.Forms.Button();
@@ -40,30 +38,12 @@
 			this._btnOpenFile = new System.Windows.Forms.Button();
 			this._opnFileDialog = new System.Windows.Forms.OpenFileDialog();
 			this._opnFolderDialog = new System.Windows.Forms.FolderBrowserDialog();
-			this.panel1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this._picVideo)).BeginInit();
+			this._picVideo = new System.Windows.Forms.PictureBox();
+			this.panel1 = new System.Windows.Forms.Panel();
 			this._pnlButtonControl.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this._picVideo)).BeginInit();
+			this.panel1.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// panel1
-			// 
-			this.panel1.Controls.Add(this._picVideo);
-			this.panel1.Location = new System.Drawing.Point(0, 0);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(626, 259);
-			this.panel1.TabIndex = 0;
-			// 
-			// _picVideo
-			// 
-			this._picVideo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this._picVideo.Location = new System.Drawing.Point(0, 3);
-			this._picVideo.Name = "_picVideo";
-			this._picVideo.Size = new System.Drawing.Size(623, 275);
-			this._picVideo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this._picVideo.TabIndex = 0;
-			this._picVideo.TabStop = false;
 			// 
 			// _pnlButtonControl
 			// 
@@ -76,15 +56,15 @@
 			this._pnlButtonControl.Controls.Add(this._btnNext);
 			this._pnlButtonControl.Controls.Add(this._btnOpenDirectory);
 			this._pnlButtonControl.Controls.Add(this._btnOpenFile);
-			this._pnlButtonControl.Location = new System.Drawing.Point(0, 284);
+			this._pnlButtonControl.Location = new System.Drawing.Point(0, 283);
 			this._pnlButtonControl.Name = "_pnlButtonControl";
-			this._pnlButtonControl.Size = new System.Drawing.Size(626, 81);
+			this._pnlButtonControl.Size = new System.Drawing.Size(684, 81);
 			this._pnlButtonControl.TabIndex = 1;
 			// 
 			// _btnPause
 			// 
 			this._btnPause.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this._btnPause.Location = new System.Drawing.Point(526, 30);
+			this._btnPause.Location = new System.Drawing.Point(584, 30);
 			this._btnPause.Name = "_btnPause";
 			this._btnPause.Size = new System.Drawing.Size(75, 23);
 			this._btnPause.TabIndex = 6;
@@ -94,7 +74,7 @@
 			// _btnStop
 			// 
 			this._btnStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this._btnStop.Location = new System.Drawing.Point(445, 30);
+			this._btnStop.Location = new System.Drawing.Point(503, 30);
 			this._btnStop.Name = "_btnStop";
 			this._btnStop.Size = new System.Drawing.Size(75, 23);
 			this._btnStop.TabIndex = 5;
@@ -104,7 +84,7 @@
 			// _btnStart
 			// 
 			this._btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this._btnStart.Location = new System.Drawing.Point(364, 30);
+			this._btnStart.Location = new System.Drawing.Point(422, 30);
 			this._btnStart.Name = "_btnStart";
 			this._btnStart.Size = new System.Drawing.Size(75, 23);
 			this._btnStart.TabIndex = 4;
@@ -159,6 +139,30 @@
 			// 
 			this._opnFileDialog.FileName = "openFileDialog1";
 			// 
+			// _picVideo
+			// 
+			this._picVideo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this._picVideo.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this._picVideo.Location = new System.Drawing.Point(0, 0);
+			this._picVideo.Name = "_picVideo";
+			this._picVideo.Size = new System.Drawing.Size(681, 274);
+			this._picVideo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this._picVideo.TabIndex = 0;
+			this._picVideo.TabStop = false;
+			// 
+			// panel1
+			// 
+			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.panel1.Controls.Add(this._picVideo);
+			this.panel1.Location = new System.Drawing.Point(0, 0);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(684, 277);
+			this.panel1.TabIndex = 0;
+			// 
 			// VideoPlayerControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -167,18 +171,15 @@
 			this.Controls.Add(this._pnlButtonControl);
 			this.Controls.Add(this.panel1);
 			this.Name = "VideoPlayerControl";
-			this.Size = new System.Drawing.Size(626, 365);
-			this.panel1.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this._picVideo)).EndInit();
+			this.Size = new System.Drawing.Size(684, 364);
 			this._pnlButtonControl.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this._picVideo)).EndInit();
+			this.panel1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
 
 		#endregion
-
-		private System.Windows.Forms.Panel panel1;
-		private System.Windows.Forms.PictureBox _picVideo;
 		private System.Windows.Forms.Panel _pnlButtonControl;
 		private System.Windows.Forms.Button _btnPause;
 		private System.Windows.Forms.Button _btnStop;
@@ -189,5 +190,7 @@
 		private System.Windows.Forms.Button _btnOpenFile;
 		private System.Windows.Forms.OpenFileDialog _opnFileDialog;
 		private System.Windows.Forms.FolderBrowserDialog _opnFolderDialog;
+		private System.Windows.Forms.PictureBox _picVideo;
+		private System.Windows.Forms.Panel panel1;
 	}
 }

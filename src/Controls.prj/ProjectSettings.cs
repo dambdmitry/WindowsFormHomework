@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,7 +32,7 @@ namespace MainWinForm
 		/// <summary>Подгружает настройки проекта.</summary>
 		public ProjectSettings()
 		{
-			LoadXML();
+			InitSettings();
 		}
 
 		#endregion
@@ -67,6 +68,18 @@ namespace MainWinForm
 			IsUnderCatalog = bool.Parse(xDoc.Root.Element("IsUnderCatalog").Value);
 		}
 
+		public void InitSettings()
+		{
+			if(File.Exists(_pathXML))
+			{
+				LoadXML();
+			}
+			else
+			{
+				IsDetector = false;
+				IsUnderCatalog = false;
+			}
+		}
 		#endregion
 	}
 }
