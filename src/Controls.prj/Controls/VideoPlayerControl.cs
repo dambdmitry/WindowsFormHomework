@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+
 using Controls;
+using OpenCvSharp;
+using OpenCvSharp.Extensions;
 
 namespace MainWinForm.Controls
 {
@@ -40,13 +37,26 @@ namespace MainWinForm.Controls
 			_projectSettings = projectSettings;
 
 			_videoPlayerControler.ChangeImage += OnChangeImage;
+			_videoPlayerControler.ChangeFrame += OnChangeFrame;
 
 			_opnFileDialog.Filter = "Image|*.png; *.jpg|Video|*.mp4; *.avi;";
 		}
 
+		/// <summary>Вызывается при каждом изменении кадра.</summary>
+		/// <param name="image">Новый кадр.</param>
+		private void OnChangeFrame(object sender, Mat image)
+		{
+			using(var img = new Mat())
+			{
+				Cv2.Resize(image, img, new OpenCvSharp.Size(_picVideo.Width, _picVideo.Height),0, 0, InterpolationFlags.Cubic);
+				_picVideo.ImageIpl = img;
+				_picVideo.Refresh();
+			}
+		}
+
 		#endregion
 
-		#region Handler
+		#region ImageHandler
 
 		/// <summary>Вызывается при изменении картинки.</summary>
 		private void OnChangeImage(object sender, string path)
@@ -58,7 +68,7 @@ namespace MainWinForm.Controls
 			catch(System.OutOfMemoryException)
 			{
 				_picVideo.Image = null;
-				MessageBox.Show($"GDI+ не поддерживает формат файла {path} в пикселях.");
+				MessageBox.Show($"GDI+ не поддерживает формат файла {path} в пикселях.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 			}
 		}
 
@@ -73,7 +83,7 @@ namespace MainWinForm.Controls
 			}
 			else if(_opnFileDialog.FilterIndex == (int)FilterType.Video)
 			{
-
+				_videoPlayerControler.OpenVideo(_opnFileDialog.FileName);
 			}
 		}
 
@@ -98,5 +108,26 @@ namespace MainWinForm.Controls
 
 		#endregion
 
+		#region VideoHandler
+
+		/// <summary>Вызывается при нажатии на "Старт".</summary>
+		private void OnStartClick(object sender, EventArgs e)
+		{
+			_videoPlayerControler.PlayVideo();
+		}
+
+		/// <summary>Вызывается при нажатии на "Пауза".</summary>
+		private void OnPauseClick(object sender, EventArgs e)
+		{
+			_videoPlayerControler.PauseVideo();
+		}
+
+		/// <summary>Вызывается при нажатии на "Стоп".</summary>
+		private void OnStopClick(object sender, EventArgs e)
+		{
+			_videoPlayerControler.StopVideo();
+		}
+
+		#endregion
 	}
 }
