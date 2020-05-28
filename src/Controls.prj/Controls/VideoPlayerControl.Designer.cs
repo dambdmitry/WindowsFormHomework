@@ -70,7 +70,7 @@
 			this._btnPause.TabIndex = 6;
 			this._btnPause.Text = "Пауза";
 			this._btnPause.UseVisualStyleBackColor = true;
-			this._btnPause.Click += new System.EventHandler(this.OnPauseClick);
+			this._btnPause.Click += new System.EventHandler(this.OnPauseClickAsync);
 			// 
 			// _btnStop
 			// 
@@ -81,7 +81,7 @@
 			this._btnStop.TabIndex = 5;
 			this._btnStop.Text = "Стоп";
 			this._btnStop.UseVisualStyleBackColor = true;
-			this._btnStop.Click += new System.EventHandler(this.OnStopClick);
+			this._btnStop.Click += new System.EventHandler(this.OnStopClickAsync);
 			// 
 			// _btnStart
 			// 
@@ -92,7 +92,7 @@
 			this._btnStart.TabIndex = 4;
 			this._btnStart.Text = "Старт";
 			this._btnStart.UseVisualStyleBackColor = true;
-			this._btnStart.Click += new System.EventHandler(this.OnStartClick);
+			this._btnStart.Click += new System.EventHandler(this.OnStartClickAsync);
 			// 
 			// _btnPrev
 			// 
@@ -136,7 +136,7 @@
 			this._btnOpenFile.TabIndex = 0;
 			this._btnOpenFile.Text = "Открыть файл";
 			this._btnOpenFile.UseVisualStyleBackColor = true;
-			this._btnOpenFile.Click += new System.EventHandler(this.OnOpenFileClick);
+			this._btnOpenFile.Click += new System.EventHandler(this.OnOpenFileClickAsync);
 			// 
 			// _opnFileDialog
 			// 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using Controls;
@@ -42,21 +43,23 @@ namespace MainWinForm.Controls
 			_opnFileDialog.Filter = "Image|*.png; *.jpg|Video|*.mp4; *.avi;";
 		}
 
+
+
+		#endregion
+
+		#region Handler
+
 		/// <summary>Вызывается при каждом изменении кадра.</summary>
 		/// <param name="image">Новый кадр.</param>
 		private void OnChangeFrame(object sender, Mat image)
 		{
 			using(var img = new Mat())
 			{
-				Cv2.Resize(image, img, new OpenCvSharp.Size(_picVideo.Width, _picVideo.Height),0, 0, InterpolationFlags.Cubic);
+				Cv2.Resize(image, img, new OpenCvSharp.Size(_picVideo.Width, _picVideo.Height), 0, 0, InterpolationFlags.Cubic);
 				_picVideo.ImageIpl = img;
 				_picVideo.Refresh();
 			}
 		}
-
-		#endregion
-
-		#region ImageHandler
 
 		/// <summary>Вызывается при изменении картинки.</summary>
 		private void OnChangeImage(object sender, string path)
@@ -73,7 +76,7 @@ namespace MainWinForm.Controls
 		}
 
 		/// <summary>Вызывается при нажатии на кнопку "Открыть файл".</summary>
-		private void OnOpenFileClick(object sender, EventArgs e)
+		private async void OnOpenFileClickAsync(object sender, EventArgs e)
 		{
 			if(_opnFileDialog.ShowDialog() == DialogResult.Cancel) return;
 
@@ -83,7 +86,7 @@ namespace MainWinForm.Controls
 			}
 			else if(_opnFileDialog.FilterIndex == (int)FilterType.Video)
 			{
-				_videoPlayerControler.OpenVideo(_opnFileDialog.FileName);
+				await _videoPlayerControler.OpenVideoAsync(_opnFileDialog.FileName);
 			}
 		}
 
@@ -111,21 +114,21 @@ namespace MainWinForm.Controls
 		#region VideoHandler
 
 		/// <summary>Вызывается при нажатии на "Старт".</summary>
-		private void OnStartClick(object sender, EventArgs e)
+		private async void OnStartClickAsync(object sender, EventArgs e)
 		{
-			_videoPlayerControler.PlayVideo();
+			await _videoPlayerControler.PlayVideoAsync();
 		}
 
 		/// <summary>Вызывается при нажатии на "Пауза".</summary>
-		private void OnPauseClick(object sender, EventArgs e)
+		private async void OnPauseClickAsync(object sender, EventArgs e)
 		{
-			_videoPlayerControler.PauseVideo();
+			await _videoPlayerControler.PauseVideoAsync();
 		}
 
 		/// <summary>Вызывается при нажатии на "Стоп".</summary>
-		private void OnStopClick(object sender, EventArgs e)
+		private async void OnStopClickAsync(object sender, EventArgs e)
 		{
-			_videoPlayerControler.StopVideo();
+			await _videoPlayerControler.StopVideoAsync();
 		}
 
 		#endregion

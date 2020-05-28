@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -158,18 +159,19 @@ namespace MainWinForm.Controls
 
 		/// <summary>Открывает видеофайл.</summary>
 		/// <param name="path">Путь к файлу.</param>
-		public void OpenVideo(string path)
+		public async Task OpenVideoAsync(string path)
 		{
 			if(_capture != null) _capture.Dispose();
 			_stopedFile = path;
 			_capture = new VideoCapture(path);
-			_fps = (int)(1000 / _capture.Fps);
+			//_fps = (int)(1000 / _capture.Fps);
+			_fps = 1; // При таком значении видео воспроизводится в нормальном режиме, при 60 происходит слоумо.
 			using(Mat image = new Mat())
 			{
 				_capture.Read(image);
 				if(!image.Empty())
 				{
-					NextFrameAddInVideoControl(image);
+					await NextFrameAddInVideoControlAsync(image);
 				}
 				else
 				{
@@ -179,7 +181,7 @@ namespace MainWinForm.Controls
 		}
 
 		/// <summary>Запускает видео</summary>
-		public void PlayVideo()
+		public async Task PlayVideoAsync()
 		{
 			_pause = false;
 			while(true)
@@ -196,8 +198,9 @@ namespace MainWinForm.Controls
 								_logControler.AddMessage("Конец видео");
 								break;
 							}
-							NextFrameAddInVideoControl(image);
-							Cv2.WaitKey(_fps);
+							await NextFrameAddInVideoControlAsync(image);
+							await Task.Delay(_fps);
+							//Cv2.WaitKey(_fps);
 						}
 					}
 					else
@@ -205,30 +208,38 @@ namespace MainWinForm.Controls
 						break;
 					}
 				}
+				else
+				{
+					break;
+				}
 			}
 		}
 
 		/// <summary>Ставит видео на паузу.</summary>
-		public void PauseVideo()
+		public async Task PauseVideoAsync()
 		{
-			if(_capture != null) _pause = true;
+			await Task.Run(() =>
+			{
+				if(_capture != null) _pause = true;
+			});
 		}
 
 		/// <summary>Останавливает видео и возвращает его на первый кадр.</summary>
-		public void StopVideo()
+		public async Task StopVideoAsync()
 		{
 			_pause = true;
-			OpenVideo(_stopedFile);
+			await OpenVideoAsync(_stopedFile);
 		}
 
 		/// <summary>Добавляет следующий кадр на контрол.</summary>
 		/// <param name="image">Кадр.</param>
-		private void NextFrameAddInVideoControl(Mat image)
+		private async Task NextFrameAddInVideoControlAsync(Mat image)
 		{
 			OnChangeFrame(image);
 		}
 
 		#endregion
+
 	}
 
 

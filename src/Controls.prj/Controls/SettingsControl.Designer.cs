@@ -67,7 +67,7 @@
 			this._btnSave.TabIndex = 2;
 			this._btnSave.Text = "Сохранить";
 			this._btnSave.UseVisualStyleBackColor = true;
-			this._btnSave.Click += new System.EventHandler(this.OnSaveClick);
+			this._btnSave.Click += new System.EventHandler(this.OnSaveClickAsync);
 			// 
 			// _btnLoad
 			// 

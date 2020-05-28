@@ -56,9 +56,9 @@ namespace MainWinForm.Controls
 		}
 
 		/// <summary>Сохраняет настройки проекта при нажатии на кнопку "Сохранить".</summary>
-		private void OnSaveClick(object sender, EventArgs e)
+		private async void OnSaveClickAsync(object sender, EventArgs e)
 		{
-			_projectSettings.SaveXML();
+			await _projectSettings.SaveXMLAsync();
 			_logControler.AddMessage("Настройки проекта сохранены");
 		}
 

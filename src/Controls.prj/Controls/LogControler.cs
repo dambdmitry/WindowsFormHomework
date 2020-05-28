@@ -55,17 +55,17 @@ namespace MainWinForm.Controls
 		{
 			var msg = $"[{DateTime.Now}] - " + text + "\n";
 			OnAddMessageInLog(msg);
-			SaveLogInFile(msg);
+			SaveLogInFileAsync(msg);
 		}
 
 		/// <summary>Сохранение лога в файл. </summary>
 		/// <param name="text">Текст лога</param>
-		public void SaveLogInFile(string text)
+		public async void SaveLogInFileAsync(string text)
 		{
 			using(FileStream fileStreamWriter = new FileStream(_path, FileMode.Append))
 			{
 				byte[] bytes = Encoding.Default.GetBytes(text);
-				fileStreamWriter.Write(bytes, 0, bytes.Length);
+				await fileStreamWriter.WriteAsync(bytes, 0, bytes.Length);
 			}
 		}
 

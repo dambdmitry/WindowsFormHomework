@@ -32,7 +32,7 @@ namespace MainWinForm
 		/// <summary>Подгружает настройки проекта.</summary>
 		public ProjectSettings()
 		{
-			InitSettings();
+			InitSettingsAsync();
 		}
 
 		#endregion
@@ -40,39 +40,45 @@ namespace MainWinForm
 		#region Methods
 
 		/// <summary>Сохраняет настройки проекта.</summary>
-		public void SaveXML()
+		public async Task SaveXMLAsync()
 		{
-			XElement bufElement; //Элемент для записи.
+			await Task.Run(() =>
+			{
+				XElement bufElement; //Элемент для записи.
 
-			XDocument xDoc = new XDocument();
+				XDocument xDoc = new XDocument();
 
-			XElement project = new XElement("MainWinForm");
+				XElement project = new XElement("MainWinForm");
 
-			bufElement = new XElement("IsDetector", IsDetector);
-			project.Add(bufElement);
+				bufElement = new XElement("IsDetector", IsDetector);
+				project.Add(bufElement);
 
-			bufElement = new XElement("IsUnderCatalog", IsUnderCatalog);
-			project.Add(bufElement);
+				bufElement = new XElement("IsUnderCatalog", IsUnderCatalog);
+				project.Add(bufElement);
 
-			xDoc.Add(project);
+				xDoc.Add(project);
 
-			xDoc.Save(_pathXML);
+				xDoc.Save(_pathXML);
+			});
 		}
 
 		/// <summary>Загружает настройки проекта.</summary>
-		public void LoadXML()
+		public async Task LoadXMLAsync()
 		{
-			XDocument xDoc = XDocument.Load(_pathXML);
+			await Task.Run(() =>
+			{
+				XDocument xDoc = XDocument.Load(_pathXML);
 
-			IsDetector = bool.Parse(xDoc.Root.Element("IsDetector").Value);
-			IsUnderCatalog = bool.Parse(xDoc.Root.Element("IsUnderCatalog").Value);
+				IsDetector = bool.Parse(xDoc.Root.Element("IsDetector").Value);
+				IsUnderCatalog = bool.Parse(xDoc.Root.Element("IsUnderCatalog").Value);
+			});
 		}
 
-		public void InitSettings()
+		public async void InitSettingsAsync()
 		{
 			if(File.Exists(_pathXML))
 			{
-				LoadXML();
+				await LoadXMLAsync();
 			}
 			else
 			{
