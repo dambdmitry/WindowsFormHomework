@@ -17,6 +17,8 @@ namespace MainWinForm.Controls
 		private VideoPlayerControler _videoPlayerControler;
 		private ProjectSettings _projectSettings;
 
+		//private Detector _detector = new Detector();
+
 		#endregion
 
 		#region .ctor
@@ -41,6 +43,7 @@ namespace MainWinForm.Controls
 			_videoPlayerControler.ChangeFrame += OnChangeFrame;
 
 			_opnFileDialog.Filter = "Image|*.png; *.jpg|Video|*.mp4; *.avi;";
+
 		}
 
 
@@ -55,9 +58,18 @@ namespace MainWinForm.Controls
 		{
 			using(var img = new Mat())
 			{
-				Cv2.Resize(image, img, new OpenCvSharp.Size(_picVideo.Width, _picVideo.Height), 0, 0, InterpolationFlags.Cubic);
-				_picVideo.ImageIpl = img;
-				_picVideo.Refresh();
+				if(!_projectSettings.IsDetector)
+				{
+					Cv2.Resize(image, img, new OpenCvSharp.Size(_picVideo.Width, _picVideo.Height), 0, 0, InterpolationFlags.Cubic);
+					_picVideo.ImageIpl = img;
+					_picVideo.Refresh();
+				}
+				//else
+				//{
+				//	Cv2.Resize(image, img, new OpenCvSharp.Size(_picVideo.Width, _picVideo.Height), 0, 0, InterpolationFlags.Cubic);
+				//	_picVideo.Image = _detector.Detect(img).ToBitmap();
+				//	_picVideo.Refresh();
+				//}
 			}
 		}
 

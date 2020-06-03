@@ -165,7 +165,7 @@ namespace MainWinForm.Controls
 			_stopedFile = path;
 			_capture = new VideoCapture(path);
 			//_fps = (int)(1000 / _capture.Fps);
-			_fps = 1; // При таком значении видео воспроизводится в нормальном режиме, при 60 происходит слоумо.
+			_fps = 30; 
 			using(Mat image = new Mat())
 			{
 				_capture.Read(image);
